@@ -1,0 +1,27 @@
+https://github.com/mateusKoppe/laravel-notes-example/blob/master/app/Http/Controllers/NoteController.php
+
+
+
+example note
+https://anotepad.com/notes/rt8h2fnk
+
+upload image adapter
+https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/upload-adapter.html
+
+soft Delete
+password
+
+
+guard with password
+StoreNoteRequest authorize
+
+ipAddress
+
+verificationemail: mailtrap.io
+phuchm13@gmail.com
+iamaninja1
+
+resend mail
+account page?
+change password
+reset password

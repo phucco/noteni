@@ -1,0 +1,26 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+@import 'font-awesome';
+
+.ck-editor__editable {
+	min-height: 500px;
+}
+
+.form-check-label {
+	min-width: 140px;
+}
+
+tr.first-row-borderless td {
+	border-top: none;
+}
+
+.form-inline-table {
+	height: 23px !important;
+}
