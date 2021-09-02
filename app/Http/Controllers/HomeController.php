@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    
-
     public function features()
     {
     	return view ('home.features', ['app_name' => 'Noteni']);
@@ -17,5 +15,4 @@ class HomeController extends Controller
     {
     	return view ('home.about', ['app_name' => 'Noteni']);
     }
-
 }

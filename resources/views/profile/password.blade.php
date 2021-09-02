@@ -13,7 +13,7 @@
                 <div class="card-body">
                     @include('layouts.status')
 
-                	<form method="post" action="">
+                	<form method="post" action="{{ route('profile.password') }}" id="recaptcha-form">
                         @csrf
 
                         <div class="form-group row">
@@ -54,7 +54,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}" data-callback="onSubmit" data-action="submit">
                                     {{ __('Save') }}
                                 </button>
                             </div>

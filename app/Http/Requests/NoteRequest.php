@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Rules\Recaptcha;
 
 class NoteRequest extends FormRequest
 {
@@ -28,7 +29,8 @@ class NoteRequest extends FormRequest
             'title' => ['required', 'max:255'],
             'content' => ['required'],
             'status' => ['required', Rule::in(['1','2','3'])],
-            'password' => 'required_if:status,3'
+            'password' => 'required_if:status,3',
+            'g-recaptcha-response' => ['required', new Recaptcha]            
         ];
     }
 }

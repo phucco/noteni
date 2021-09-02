@@ -3,8 +3,8 @@
 namespace App\Http\Services;
 
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 use App\Rules\IsCurrentPassword;
+use App\Rules\Recaptcha;
 use App\Models\User;
 
 class ProfileService
@@ -13,7 +13,8 @@ class ProfileService
     {
     	$request->validate([
             'current_password' => ['required', new IsCurrentPassword],
-            'password' => ['required', 'confirmed', 'min:8', 'different:current_password']
+            'password' => ['required', 'confirmed', 'min:8', 'different:current_password'],
+            'g-recaptcha-response' => ['required', new Recaptcha]
         ]);
 
         try {
@@ -27,7 +28,10 @@ class ProfileService
 
     public function updateName($request)
     {
-        $request->validate(['name' => 'required']);
+        $request->validate([
+            'name' => 'required',
+            'g-recaptcha-response' => ['required', new Recaptcha]
+        ]);
 
         try {
             auth()->user()->update(['name' => $request->input('name')]);
@@ -42,7 +46,8 @@ class ProfileService
     {
         $request->validate([
             'email' => ['required', 'email'],            
-            'password' => ['required', new IsCurrentPassword]
+            'password' => ['required', new IsCurrentPassword],
+            'g-recaptcha-response' => ['required', new Recaptcha]
         ]);
 
         $email = $request->input('email');
@@ -57,6 +62,7 @@ class ProfileService
                 $user->email = $email;
                 $user->email_verified_at = null;
                 $user->save();
+                
                 $user->sendEmailVerificationNotification();
             } catch (\Exception $error) {
                 return false;
