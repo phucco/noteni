@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
     <div id="app">
@@ -24,6 +26,10 @@
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
-    
+    <script type="text/javascript">
+    function onSubmit(token) {
+        document.getElementById("recaptcha-form").submit();
+    }
+    </script>
 </body>
 </html>

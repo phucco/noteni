@@ -40,7 +40,7 @@ class Helper
 	{
 		if ($email_verified_at) return 'Your account is already verified.';
 
-		return 'Your account is not verified.
+		return 'Your account is not verified. Please check your email for a verification link.
 				<br>
 				<form class="d-inline" method="POST" action="' . route('verification.resend') . '">
 					<input type="hidden" name="_token" value="' . csrf_token() . '" />

@@ -22,10 +22,12 @@ class NoteService
 	public function create($request)
 	{
 		$slug = $this->createNewSlug();
+		$user_id = $this->getUserId();
 
 		$status = (int) $request->input('status', 1);
 		$password = (string) $request->input('password');
 
+		if ($user_id == 0 && $status == 2) $status = 1;
 		if ($status !== 3) $password = null;
         
 		$note = [
@@ -33,7 +35,7 @@ class NoteService
 			'content' => (string) $request->input('content'),
 			'status' => $status,
 			'password' => $password,
-			'user_id' => $this->getUserId(),
+			'user_id' => $user_id,
 			'slug' => $slug
 		];
 
@@ -138,7 +140,7 @@ class NoteService
 		return Note::where(['slug' => $slug, 'password' => $password])->first();		
 	}
 
-	public function createNewSlug()
+	private function createNewSlug()
 	{
 		$slug = Str::random(8);
 
@@ -151,7 +153,7 @@ class NoteService
 		return $slug;
 	}
 
-	public function getUserId()
+	private function getUserId()
 	{
 		if (auth()->check()) {
         	$user_id = auth()->id();

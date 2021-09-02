@@ -8,13 +8,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ \Route::currentRouteName() == 'notes.new' ? 'active' : '' }}" href="{{ route('notes.new') }}">{{ __('New Note') }}</a>
+                    <a class="nav-link {{ \Route::currentRouteName() == 'notes.add' ? 'active' : '' }}" href="{{ route('notes.add') }}">{{ __('New Note') }}</a>
                 </li>
                 @auth
                 <li class="nav-item">
                     <a class="nav-link {{ \Route::currentRouteName() == 'notes.index' ? 'active' : '' }}" href="{{ route('notes.index') }}">{{ __('All Notes') }}</a>
                 </li>
                 @endauth
+                <li class="nav-item">
+                    <a class="nav-link {{ \Route::currentRouteName() == 'links.add' ? 'active' : '' }}" href="{{ route('links.add') }}">{{ __('New Shortened URL') }}</a>
+                </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">

@@ -10,7 +10,7 @@
                 <div class="card-body">
                     @include('layouts.status')
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    <form method="POST" action="{{ route('password.email') }}" id="recaptcha-form">
                         @csrf
 
                         <div class="form-group row">
@@ -29,7 +29,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}" data-callback="onSubmit" data-action="submit">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>

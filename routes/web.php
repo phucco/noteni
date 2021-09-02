@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ProfileController;
 
 Auth::routes(['verify' => true, 'reset' => true]);
@@ -26,7 +27,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::name('notes.')->group(function () {
-    Route::get('/', [NoteController::class, 'create'])->name('new');
+    Route::get('/', [NoteController::class, 'create'])->name('add');
     Route::post('/', [NoteController::class, 'store']);
 
     Route::get('show/{note:slug}', [NoteController::class, 'show'])->name('show');
@@ -41,6 +42,12 @@ Route::name('notes.')->group(function () {
         Route::delete('permanently-delete/{note:slug}', [NoteController::class, 'forceDelete'])->name('forceDelete');
         Route::delete('empty-trash', [NoteController::class, 'emptyTrash'])->name('emptyTrash');
     });
+});
+
+Route::prefix('links')->name('links.')->group(function () {
+    Route::get('new', [LinkController::class, 'create'])->name('add');
+    Route::post('new', [LinkController::class, 'store']);
+    Route::get('{link:slug}', [LinkController::class, 'show'])->name('show');
 });
 
 Route::get('features', [HomeController::class, 'features'])->name('features');

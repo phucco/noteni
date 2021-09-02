@@ -30,9 +30,9 @@ class ProfileController extends Controller
     {
     	$result = $this->profileService->updatePassword($request);    	
 
-        if ($result) return redirect()->route('profile.index')->with('status', 'Your password has been changed successfully.');
+        if ($result) return redirect()->route('profile.index')->with('status', 'Your password has been changed.');
 
-        return back();
+        return back()->with('error', 'Please try again later.');
     }
     
     public function editName()
@@ -44,9 +44,9 @@ class ProfileController extends Controller
     {
         $result = $this->profileService->updateName($request);      
 
-        if ($result) return redirect()->route('profile.index')->with('status', 'Your name has been changed successfully.'); 
+        if ($result) return redirect()->route('profile.index')->with('status', 'Your name has been changed.'); 
 
-        return back();
+        return back()->with('error', 'Please try again later.');
     }
 
     public function editEmail()
@@ -58,8 +58,8 @@ class ProfileController extends Controller
     {
         $result = $this->profileService->updateEmail($request);      
 
-        if ($result) return redirect()->route('profile.index')->with('status', 'Your email has been changed successfully. Please check your email for a verification link.');
+        if ($result) return redirect()->route('profile.index')->with('status', 'Your email has been changed. Please check your email for a verification link.');
 
-        return back();
+        return back()->with('error', 'Please try again later.');
     }
 }

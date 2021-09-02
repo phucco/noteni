@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Services\NoteService;
-use App\Http\Requests\NoteStoreRequest;
-use App\Http\Requests\NoteUpdateRequest;
+use App\Http\Requests\NoteRequest;
 
 use App\Models\Note;
 use App\Models\User;
@@ -43,13 +42,13 @@ class NoteController extends Controller
         return view('note.add');
     }
 
-    public function store(NoteStoreRequest $request)
+    public function store(NoteRequest $request)
     {
         $result = $this->noteService->create($request);
 
-        if ($result) return redirect()->route('notes.show', session('slug'))->with('status', 'Create note successfully!');
+        if ($result) return redirect()->route('notes.show', session('slug'))->with('status', 'Your note has been created.');
 
-        return back()->withInput();
+        return back()->withInput()->with('error', 'Please try again later.');
     }
 
     public function edit(Note $note)
@@ -57,20 +56,20 @@ class NoteController extends Controller
         return view('note.edit', ['note' => $note]);
     }
 
-    public function update(NoteUpdateRequest $request, Note $note)
+    public function update(NoteRequest $request, Note $note)
     {
         $result = $this->noteService->update($request, $note);
 
-        if ($result) return redirect()->route('notes.show', $note->slug)->with('status', 'Update note successfully!');        
+        if ($result) return redirect()->route('notes.show', $note->slug)->with('status', 'Your note has been updated.');        
 
-        return back()->withInput();
+        return back()->withInput()->with('error', 'Please try again later.');
     }
 
     public function destroy(Note $note)
     {
         $result = $this->noteService->destroy($note);
 
-        if ($result) return redirect()->route('notes.index')->with('status', 'Delete note successfully!');
+        if ($result) return redirect()->route('notes.index')->with('status', 'Your note has been deleted.');
 
         return back()->with('error', 'Please try again later.');
     }
@@ -86,7 +85,7 @@ class NoteController extends Controller
     {
         $result = $this->noteService->restore($slug);
 
-        if ($result) return redirect()->route('notes.index')->with('status', 'Restore note successfully!');
+        if ($result) return redirect()->route('notes.index')->with('status', 'Your note has been restored.');
 
         return back()->with('error', 'Please try again later.');
     }
@@ -95,7 +94,7 @@ class NoteController extends Controller
     {
         $result = $this->noteService->forceDelete($slug);
 
-        if ($result) return redirect()->route('notes.index')->with('status', 'Permanently delete note successfully!');
+        if ($result) return redirect()->route('notes.index')->with('status', 'Your note has been deleted permanently.');
 
         return back()->with('error', 'Please try again later.');
     }
@@ -104,7 +103,7 @@ class NoteController extends Controller
     {
         $result = $this->noteService->emptyTrash($request);
 
-        if ($result) return redirect()->route('notes.index')->with('status', 'Empty trash bin successfully!');
+        if ($result) return redirect()->route('notes.index')->with('status', 'Trash bin has been emptied.');
 
         return back()->with('error', 'Please try again later.');
     }
