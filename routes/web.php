@@ -11,6 +11,10 @@ use App\Http\Controllers\ProfileController;
 
 Auth::routes(['verify' => true, 'reset' => true]);
 
+Route::get('features', [HomeController::class, 'features'])->name('features');
+Route::get('about', [HomeController::class, 'about'])->name('about');
+Route::post('check-password', [NoteController::class, 'checkPassword']);
+
 Route::middleware(['auth'])->prefix('profile')->name('profile.')->group(function () {
     Route::get('/', [ProfileController::class, 'viewProfile'])->name('index');
     Route::get('password', [ProfileController::class, 'editPassword'])->name('password');
@@ -30,7 +34,7 @@ Route::name('notes.')->group(function () {
     Route::get('/', [NoteController::class, 'create'])->name('add');
     Route::post('/', [NoteController::class, 'store']);
 
-    Route::get('show/{note:slug}', [NoteController::class, 'show'])->name('show');
+    Route::get('notes/{note:slug}', [NoteController::class, 'show'])->name('show');
     Route::get('edit/{note:slug}', [NoteController::class, 'edit'])->name('edit');
     Route::post('edit/{note:slug}', [NoteController::class, 'update']);
 
@@ -44,13 +48,9 @@ Route::name('notes.')->group(function () {
     });
 });
 
-Route::prefix('links')->name('links.')->group(function () {
-    Route::get('new', [LinkController::class, 'create'])->name('add');
-    Route::post('new', [LinkController::class, 'store']);
+Route::name('links.')->group(function () {
+    Route::get('links/new', [LinkController::class, 'create'])->name('add');
+    Route::post('links/new', [LinkController::class, 'store']);
     Route::get('{link:slug}', [LinkController::class, 'show'])->name('show');
 });
 
-Route::get('features', [HomeController::class, 'features'])->name('features');
-Route::get('about', [HomeController::class, 'about'])->name('about');
-
-Route::post('check-password', [NoteController::class, 'checkPassword']);

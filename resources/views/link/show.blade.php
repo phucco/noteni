@@ -13,10 +13,10 @@
             		<p class="lead">{{ __('This is the destination:') }}</p>
             		
     				<p class="lead fw-bold">
-    					<a href="{{ $link->destination }}" class="">{{ $link->destination }}</a>
+    					<a href="{{ $link->destination }}" class="" target="_blank">{{ $link->destination }}</a>
     				</p>
 
-    				<a class="btn btn-success btn-lg text-center" href="{{ $link->destination }}" role="button">{{ __('Go to the destination ') }}»</a>
+    				<a class="btn btn-success btn-lg text-center" href="{{ $link->destination }}" role="button" target="_blank">{{ __('Go to the destination ') }}»</a>
     				<p class="mt-4">Created at: {{ $link->created_at }}, visited {{ $link->times }} times.</p>
             	</div>
 			</div>

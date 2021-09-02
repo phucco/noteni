@@ -143,6 +143,7 @@ class NoteService
 	private function createNewSlug()
 	{
 		$slug = Str::random(8);
+		$slug = Str::of($slug)->lower();
 
 		$note = Note::where('slug', $slug)->first();
 
