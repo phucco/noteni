@@ -33,12 +33,12 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::name('notes.')->group(function () {
     Route::get('/', [NoteController::class, 'create'])->name('add');
     Route::post('/', [NoteController::class, 'store']);
-
+    
     Route::get('notes/{note:slug}', [NoteController::class, 'show'])->name('show');
-    Route::get('edit/{note:slug}', [NoteController::class, 'edit'])->name('edit');
-    Route::post('edit/{note:slug}', [NoteController::class, 'update']);
 
     Route::middleware(['auth'])->group(function () {
+        Route::get('edit/{note:slug}', [NoteController::class, 'edit'])->name('edit');
+        Route::post('edit/{note:slug}', [NoteController::class, 'update']);
     	Route::get('all', [NoteController::class, 'index'])->name('index');
         Route::get('trash', [NoteController::class, 'trash'])->name('trash');    	
         Route::delete('delete/{note:slug}', [NoteController::class, 'destroy'])->name('destroy');
