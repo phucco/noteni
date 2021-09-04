@@ -1,5 +1,6 @@
 require('./bootstrap');
 require('./ckeditor');
+// require('./main');
 
 $.ajaxSetup({
     headers: {
@@ -35,11 +36,14 @@ $(document).ready(function(){
     
 	var password = $("#password");
 
-    if ($("#status_3").is(':checked')) {password.prop('disabled', false);}
+    if ($("#status_3").is(':checked')) {
+        password.prop('disabled', false);
+    }
     
 	$("input[name=status]").on('change', function() {
 		var disabled = $(this).val() !== '3';
 		password.prop('disabled', disabled);
+        if (disabled) { password.val(""); }
 	});
 
 	$("#btn_submit").click(function () {
@@ -62,4 +66,46 @@ $(document).ready(function(){
             }
         });
     });
+
+    $("#shortened_btn").click(function (event) {
+        event.preventDefault();
+        copyThisLink();        
+        document.getElementById("shortened_btn").innerHTML = "Copied!";
+        document.getElementById("shortened_btn").classList.add("font-weight-bold");
+        setTimeout( function() {
+            document.getElementById("shortened_btn").classList.remove("font-weight-bold");
+            document.getElementById("shortened_btn").innerHTML = "Click here to copy this shorten URL";
+        }, 3000);
+    });
 });
+
+function copyThisLink()
+{
+    try {
+        var link = document.getElementById("shortened_url");
+        link.select();
+        link.setSelectionRange(0, 99999);
+        copyToClipboard(link.value);
+    } catch (error) {
+        console.log(error);        
+    }
+}
+
+function copyToClipboard(textToCopy) {
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(textToCopy);
+    } else {
+        let textArea = document.createElement("textarea");
+        textArea.value = textToCopy;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        return new Promise((res, rej) => {
+            document.execCommand('copy') ? res() : rej();
+            textArea.remove();
+        });
+    }
+}
