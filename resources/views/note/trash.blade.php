@@ -52,6 +52,7 @@
     <div class="d-flex justify-content-center mt-3">
         {!! $notes->links('pagination::bootstrap-4') !!}      
     </div>
+    <p class="text-transform-italic">Remember: Notes in trash will be automatically deleted after 30 days.</p>
     <form action="{{ route('notes.emptyTrash') }}" method="post">
         @method('DELETE')
         @csrf

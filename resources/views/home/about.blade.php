@@ -5,9 +5,9 @@
 <div class="card-body">
     <dl>
     	<dt>{{ __('About ') . $app_name }}</dt>
-    	<dd>{{ __('This has been in existence since Oct. 2009, launched with the basic premise of providing a simple tool for users to save notes online.') }}</dd>
+    	<dd>{{ __('This has been in existence since 2020, launched with the basic premise of providing a simple tool for users to save notes online.') }}</dd>
     	<dd>{{ __('We are very excited about interacting with this vibrant user community around this tool. We hope to work hard on your feedback and roll out useful features suggested by you soon.') }}</dd>
-        <dd>{{ __('If you have any ideas, suggestions, thoughts, observations - just reach out to us either via email. We are eager to hear from you!') }}</dd>
+        <dd>{{ __('If you have any ideas, suggestions, thoughts, observations - just reach out to us either via email manage@noteni.com. We are eager to hear from you!') }}</dd>
         <dt>{{ __('Privacy Policy') }}</dt>
         <dd>{{ __('We share information with 3rd parties where required to identify or track abuse or prevent future abuse (e.g. we may check submitted URLs against 3rd party blacklists and may share information on malicious URLs or abusive users with 3rd parties).') }}</dd>
         <dd>{{ __('We use Google Analytics to collect and analyse site statistics. Google Analytics mainly uses first-party cookies to report on visitor interactions on this website. These cookies do not collect any personally identifiable information and are only used for the statistical collection of data such as visits and page hits.') }}</dd>

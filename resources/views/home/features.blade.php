@@ -26,6 +26,7 @@
     			<li>{{ __('Create to-do lists, web texts, paragraph, ...') }}</li>
     			<li>{{ __('Save your favourite links') }}</li>
     			<li>{{ __('Take Quick Notes during training sessions that you can easily share with others') }}</li>
+                <li>{{ __('Easily to create shorten, beautiful links.') }}</li>
     		</ul>
     	</dd>
     	<dt>{{ __('More on How To Use ') . $app_name . __(' - a free online notes editor') }}</dt>
