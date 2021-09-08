@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            Note::onlyTrashed()->where('deleted_at', '<', Carbon::now()->subdays(3))->forceDelete();
+            Note::onlyTrashed()->where('deleted_at', '<', Carbon::now()->subdays(30))->forceDelete();
         })->daily();
     }
 

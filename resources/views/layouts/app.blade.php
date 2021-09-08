@@ -17,8 +17,6 @@
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
-    <script type="text/javascript">
-        function onSubmit(token) { document.getElementById("recaptcha-form").submit(); }
-    </script>
+    <script>function onSubmit(token) { document.getElementById("recaptcha-form").submit(); }</script>
 </body>
 </html>
