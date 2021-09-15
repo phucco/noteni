@@ -33,7 +33,7 @@
             <input type="text" name="password" class="form-control" id="password" disabled required>
 		</div>
 
-        <div class="form-group mb-0">
+        <div class="form-group mb-2">
             <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}" data-callback="onSubmit" data-action="submit">
                 {{ __('Save') }}
             </button>

@@ -67,7 +67,7 @@ $(document).ready(function(){
         });
     });
 
-    $("#shortened_btn").click(function (event) {
+    /*$("#shortened_btn").click(function (event) {
         event.preventDefault();
         copyThisLink();        
         document.getElementById("shortened_btn").innerHTML = "Copied!";
@@ -76,10 +76,10 @@ $(document).ready(function(){
             document.getElementById("shortened_btn").classList.remove("font-weight-bold");
             document.getElementById("shortened_btn").innerHTML = "Click here to copy this shorten URL";
         }, 3000);
-    });
+    });*/
 });
 
-function copyThisLink()
+/*function copyThisLink()
 {
     try {
         var link = document.getElementById("shortened_url");
@@ -108,4 +108,4 @@ function copyToClipboard(textToCopy) {
             textArea.remove();
         });
     }
-}
+}*/

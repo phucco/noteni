@@ -2,9 +2,6 @@
 
 namespace App\Http\Services;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
-
 use App\Models\Note;
 
 class NoteService
@@ -21,27 +18,22 @@ class NoteService
 
 	public function create($request)
 	{
-		$slug = $this->createNewSlug();
-		$user_id = $this->getUserId();
-
 		$status = (int) $request->input('status', 1);
 		$password = (string) $request->input('password');
 
-		if ($user_id == 0 && $status == 2) $status = 1;
+		if (!auth()->check() && $status == 2) $status = 1;
 		if ($status !== 3) $password = null;
         
 		$note = [
 			'title' => (string) $request->input('title'),
 			'content' => (string) $request->input('content'),
 			'status' => $status,
-			'password' => $password,
-			'user_id' => $user_id,
-			'slug' => $slug
+			'password' => $password
 		];
 
 		try {
-			Note::create($note);
-			$request->session()->flash('slug', $slug);
+			$result = Note::create($note);
+			$request->session()->flash('slug', $result->slug);
 		} catch (\Exception $error) {
             return false;
 		}
@@ -137,31 +129,6 @@ class NoteService
 		$slug = (string) $request->input('slug');
 		$password = (string) $request->input('password');
 
-		return Note::where(['slug' => $slug, 'password' => $password])->first();		
-	}
-
-	private function createNewSlug()
-	{
-		$slug = Str::random(8);
-		$slug = Str::of($slug)->lower();
-
-		$note = Note::where('slug', $slug)->first();
-
-		if ($note) {
-			$slug = self::createNewSlug();
-		}
-
-		return $slug;
-	}
-
-	private function getUserId()
-	{
-		if (auth()->check()) {
-        	$user_id = auth()->id();
-        } else {
-        	$user_id = 0;
-        }
-
-        return $user_id;
+		return Note::where(['slug' => $slug, 'password' => $password])->first();
 	}
 }

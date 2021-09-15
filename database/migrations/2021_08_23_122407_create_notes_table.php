@@ -18,7 +18,7 @@ class CreateNotesTable extends Migration
             $table->text('title');
             $table->longText('content');
             $table->integer('status')->default(1);
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->softDeletes();
             $table->timestamps();
         });

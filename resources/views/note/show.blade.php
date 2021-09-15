@@ -8,8 +8,10 @@
 </div>
 
 <div class="card-body">
-
     {!! $note->content !!}
+
+    <div class="addthis_inline_share_toolbox"></div>
+    
     <div class="mt-4">
         @can('update', $note)
         <a href="{{ route('notes.edit', $note->slug) }}" class="btn btn-primary">{{ __('Edit') }}</a>

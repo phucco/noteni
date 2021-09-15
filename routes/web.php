@@ -53,4 +53,3 @@ Route::name('links.')->group(function () {
     Route::post('links/new', [LinkController::class, 'store']);
     Route::get('{link:slug}', [LinkController::class, 'show'])->name('show');
 });
-

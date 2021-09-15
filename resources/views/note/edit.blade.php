@@ -10,7 +10,7 @@
 <div class="card-body">
     @include('layouts.status')
 
-    <form method="POST" action="{{ route('notes.edit') }}" id="recaptcha-form">
+    <form method="POST" action="{{ route('notes.edit', $note->slug) }}" id="recaptcha-form">
     	
         @csrf
         
