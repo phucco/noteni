@@ -21,9 +21,4 @@ class Note extends Model
         'password',
         'slug'
     ];
-
-    public function getRouteKeyName()
-	{
-	    return 'slug';
-	}
 }

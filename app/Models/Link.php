@@ -17,9 +17,4 @@ class Link extends Model
         'user_id',
         'times'
     ];
-    
-    public function getRouteKeyName()
-	{
-	    return 'slug';
-	}
 }

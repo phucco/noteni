@@ -16,4 +16,9 @@ trait MultiTenantModelTrait {
 			$model->slug = strtolower(Str::random(8));
 		});
 	}
+
+	public function getRouteKeyNameMultiTenantModelTrait()
+	{
+		return 'slug';
+	}
 }
