@@ -17,7 +17,7 @@ trait MultiTenantModelTrait {
 		});
 	}
 
-	public function getRouteKeyNameMultiTenantModelTrait()
+	public function getRouteKeyName()
 	{
 		return 'slug';
 	}

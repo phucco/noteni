@@ -26,7 +26,7 @@ class LinkRequest extends FormRequest
     {
         return [
             'destination' => ['required', 'url'],
-            'g-recaptcha-response' => ['required', new Recaptcha]
+            // 'g-recaptcha-response' => ['required', new Recaptcha]
         ];
     }
 }
